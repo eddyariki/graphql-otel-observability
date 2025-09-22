@@ -3,6 +3,10 @@ This repo is a demo of using OTEL for GraphQL and turning traces to metrics for 
 
 <img width="1073" height="561" alt="Screenshot 2025-09-22 at 13 39 44" src="https://github.com/user-attachments/assets/339a9ba6-8037-4fb8-9ea2-a025f7845618" />
 
+The Tempo config creates dimensions based on Types, and therefore you can check the latency per type. 
+
+<img width="1221" height="593" alt="Screenshot 2025-09-22 at 13 44 22" src="https://github.com/user-attachments/assets/2be2ef8c-6933-4bde-923e-658aa60dbb9f" />
+
 ## Prerequisites
 - You will need NPM installed.
 - You will need docker installed.
