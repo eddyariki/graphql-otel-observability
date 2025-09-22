@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+# This section implicitly enables the remote write receiver.
+# The --web.enable-remote-write-receiver command in docker-compose.yaml is key.
+# This 'remote_write' here is for Prometheus to write *out* to another endpoint,
+# which isn't used for receiving metrics from Tempo directly.
+# We keep it simple as it's often present in default configs.
+remote_write:
+  - url: http://localhost:9090/api/v1/write

@@ -1,0 +1,29 @@
+apiVersion: 1
+
+datasources:
+  - name: Tempo
+    type: tempo
+    access: proxy
+    uid: tempo-datasource
+    url: http://tempo:3200 # Points to the 'tempo' service in docker-compose
+    basicAuth: false
+    isDefault: true
+    version: 1
+    editable: true
+    serviceMap:
+      datasourceUid: prometheus-datasource # Links to the Prometheus datasource
+    nodeGraph:
+      enabled: true
+    traceToMetrics:
+      datasourceUid: prometheus-datasource # Links to the Prometheus datasource
+      tags: [ 'http.method', 'http.route' ] # Example tags to pass for metrics queries
+
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    uid: prometheus-datasource # This UID is used by Tempo's serviceMap and traceToMetrics
+    url: http://prometheus:9090 # Points to the 'prometheus' service in docker-compose
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: true
